@@ -1,0 +1,30 @@
+---
+
+apiVersion: "jakubbujny.com/v1alpha1"
+kind: "JenkinsPipeline"
+metadata:
+  name: "microservice2"
+spec:
+  microservice: "microservice2"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice2
+spec:
+  selector:
+    matchLabels:
+      app: microservice2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice2
+    spec:
+      containers:
+        - name: microservice2
+          image: digitalrasta/article-microservice2:1
+          ports:
+            - containerPort: 8080
